@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DetaiView"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="CutJobIdLov1"
+    ViewObjectName="mnj.ont.model.lov.views.CutJobIdLov"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="STNVO1"
+    ViewObjectName="mnj.ont.model.lov.views.STNVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="InseamVO1"
+    ViewObjectName="mnj.ont.model.lov.views.InseamVO">
+    <ViewCriteriaUsage
+      Name="InseamVOCriteria"
+      FullName="mnj.ont.model.lov.views.InseamVO.InseamVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="p_lineID">
+        <TransientExpression><![CDATA[SolineId]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_CutjobIdDi"
+    ListVOName="CutJobIdLov1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_CutjobIdDi_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CutjobIdDi"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="CutjobId"/>
+      <Item Value="BlancQty"/>
+      <Item Value="Cuttingqty"/>
+      <Item Value="Rajqty"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="WipEntityName"/>
+      <Item Value="WipEntityId"/>
+      <Item Value="BelanceQuantity"/>
+      <Item Value="PreviousQty"/>
+      <Item Value="StartQuantity"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="WipEntityName"/>
+      <Item Value="StartQuantity"/>
+      <Item Value="PreviousQty"/>
+      <Item Value="BelanceQuantity"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="CutJobIdLovCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Obrefno"
+    ListVOName="STNVO1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_Obrefno_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Obrefno"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="SolineId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Stn"/>
+      <Item Value="LineId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Stn"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="STNVOCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_InseamValue"
+    ListVOName="InseamVO1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_InseamValue_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="InseamValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="InseamId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="InseamId"/>
+      <Item Value="SoObinslineId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="InseamId"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="InseamVOCriteria"
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT DetailEO.DIVISION_ID, 
+       DetailEO.RANGE_ID, 
+       DetailEO.RANGEOBLINE_ID, 
+       DetailEO.SALESORDER_ID, 
+       DetailEO.SOLINE_ID, 
+       DetailEO.ITEM_CODE, 
+       DetailEO.CUTJOB_ID, 
+       DetailEO.INSEAM_ID, 
+       DetailEO.CUTTINGQTY, 
+       DetailEO.RAJQTY, 
+       DetailEO.FAB_CONS, 
+       DetailEO.LAST_UPDATE_DATE, 
+       DetailEO.LAST_UPDATED_BY, 
+       DetailEO.CREATION_DATE, 
+       DetailEO.CREATED_BY, 
+       DetailEO.OB_POSTED, 
+       DetailEO.OBREFNO,
+        DetailEO.Blanc_Qty,
+        DetailEO.Item_Description,
+        DetailEO.Orderqty,
+        DetailEO.Qty_With_Extra,
+        DetailEO.Previous_Production,
+        DetailEO.Balance_Production,
+        DetailEO.Production,
+        DetailEO.Error_Message,
+        DetailEO.Last_Action,
+      (select v.wip_entity_name
+ from wip_discrete_jobs_v v
+ where v.wip_entity_id=DetailEO.CUTJOB_ID) CUTJOB_ID_DI,
+       (select d.INSEAM
+        from CUST_MNJ_ONT_SO_OBIN_SIZLINE d 
+        where d.SO_OBINSLINE_ID = DetailEO.inseam_id) INSEAM_VALUE,
+       DetailEO.BPO_ID
+FROM MNJ_MFG_RANGE_OBLINE DetailEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="DetailEO"
+    Entity="mnj.ont.model.entities.DetailEO"/>
+  <ViewAttribute
+    Name="DivisionId"
+    PrecisionRule="true"
+    EntityAttrName="DivisionId"
+    EntityUsage="DetailEO"
+    AliasName="DIVISION_ID"/>
+  <ViewAttribute
+    Name="RangeId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RangeId"
+    EntityUsage="DetailEO"
+    AliasName="RANGE_ID"/>
+  <ViewAttribute
+    Name="RangeoblineId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RangeoblineId"
+    EntityUsage="DetailEO"
+    AliasName="RANGEOBLINE_ID"/>
+  <ViewAttribute
+    Name="SalesorderId"
+    PrecisionRule="true"
+    EntityAttrName="SalesorderId"
+    EntityUsage="DetailEO"
+    AliasName="SALESORDER_ID"/>
+  <ViewAttribute
+    Name="SolineId"
+    PrecisionRule="true"
+    EntityAttrName="SolineId"
+    EntityUsage="DetailEO"
+    AliasName="SOLINE_ID"/>
+  <ViewAttribute
+    Name="ItemCode"
+    PrecisionRule="true"
+    EntityAttrName="ItemCode"
+    EntityUsage="DetailEO"
+    AliasName="ITEM_CODE"/>
+  <ViewAttribute
+    Name="CutjobId"
+    PrecisionRule="true"
+    EntityAttrName="CutjobId"
+    EntityUsage="DetailEO"
+    AliasName="CUTJOB_ID"/>
+  <ViewAttribute
+    Name="InseamId"
+    PrecisionRule="true"
+    EntityAttrName="InseamId"
+    EntityUsage="DetailEO"
+    AliasName="INSEAM_ID"/>
+  <ViewAttribute
+    Name="Cuttingqty"
+    PrecisionRule="true"
+    EntityAttrName="Cuttingqty"
+    EntityUsage="DetailEO"
+    AliasName="CUTTINGQTY"/>
+  <ViewAttribute
+    Name="Rajqty"
+    PrecisionRule="true"
+    EntityAttrName="Rajqty"
+    EntityUsage="DetailEO"
+    AliasName="RAJQTY"/>
+  <ViewAttribute
+    Name="FabCons"
+    PrecisionRule="true"
+    EntityAttrName="FabCons"
+    EntityUsage="DetailEO"
+    AliasName="FAB_CONS"/>
+  <ViewAttribute
+    Name="LastUpdateDate"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdateDate"
+    EntityUsage="DetailEO"
+    AliasName="LAST_UPDATE_DATE"/>
+  <ViewAttribute
+    Name="LastUpdatedBy"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdatedBy"
+    EntityUsage="DetailEO"
+    AliasName="LAST_UPDATED_BY"/>
+  <ViewAttribute
+    Name="CreationDate"
+    PrecisionRule="true"
+    EntityAttrName="CreationDate"
+    EntityUsage="DetailEO"
+    AliasName="CREATION_DATE"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="DetailEO"
+    AliasName="CREATED_BY"/>
+  <ViewAttribute
+    Name="ObPosted"
+    PrecisionRule="true"
+    EntityAttrName="ObPosted"
+    EntityUsage="DetailEO"
+    AliasName="OB_POSTED"/>
+  <ViewAttribute
+    Name="Obrefno"
+    PrecisionRule="true"
+    EntityAttrName="Obrefno"
+    EntityUsage="DetailEO"
+    AliasName="OBREFNO"
+    LOVName="LOV_Obrefno">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BlancQty"
+    PrecisionRule="true"
+    AliasName="BLANC_QTY"
+    EntityAttrName="BlancQty"
+    EntityUsage="DetailEO"/>
+  <ViewAttribute
+    Name="ItemDescription"
+    PrecisionRule="true"
+    AliasName="ITEM_DESCRIPTION"
+    EntityAttrName="ItemDescription"
+    EntityUsage="DetailEO"/>
+  <ViewAttribute
+    Name="Orderqty"
+    PrecisionRule="true"
+    AliasName="ORDERQTY"
+    EntityAttrName="Orderqty"
+    EntityUsage="DetailEO"/>
+  <ViewAttribute
+    Name="QtyWithExtra"
+    PrecisionRule="true"
+    AliasName="QTY_WITH_EXTRA"
+    EntityAttrName="QtyWithExtra"
+    EntityUsage="DetailEO"/>
+  <ViewAttribute
+    Name="PreviousProduction"
+    PrecisionRule="true"
+    AliasName="PREVIOUS_PRODUCTION"
+    EntityAttrName="PreviousProduction"
+    EntityUsage="DetailEO"/>
+  <ViewAttribute
+    Name="BalanceProduction"
+    PrecisionRule="true"
+    AliasName="BALANCE_PRODUCTION"
+    EntityAttrName="BalanceProduction"
+    EntityUsage="DetailEO"/>
+  <ViewAttribute
+    Name="Production"
+    PrecisionRule="true"
+    AliasName="PRODUCTION"
+    EntityAttrName="Production"
+    EntityUsage="DetailEO"/>
+  <ViewAttribute
+    Name="ErrorMessage"
+    PrecisionRule="true"
+    EntityAttrName="ErrorMessage"
+    EntityUsage="DetailEO"
+    AliasName="ERROR_MESSAGE"/>
+  <ViewAttribute
+    Name="LastAction"
+    PrecisionRule="true"
+    EntityAttrName="LastAction"
+    EntityUsage="DetailEO"
+    AliasName="LAST_ACTION"/>
+  <ViewAttribute
+    Name="CutjobIdDi"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CUTJOB_ID_DI"
+    Expression="CUTJOB_ID_DI"
+    SQLType="VARCHAR"
+    LOVName="LOV_CutjobIdDi">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="InseamValue"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="INSEAM_VALUE"
+    Expression="INSEAM_VALUE"
+    SQLType="VARCHAR"
+    LOVName="LOV_InseamValue">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Tranid"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TRANID"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Prvcutqty"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PRVCUTQTY"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Balanceqty"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="BALANCEQTY"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="JobQty"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="JOB_QTY"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="AvailableQty"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="AVAILABLE_QTY"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Stylerefno"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STYLEREFNO"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="BpoId"
+    PrecisionRule="true"
+    EntityAttrName="BpoId"
+    EntityUsage="DetailEO"
+    AliasName="BPO_ID"/>
+  <ViewLinkAccessor
+    Name="DetailVO"
+    ViewLink="mnj.ont.model.views.MnjMfgRngsSizlfidFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="DetailVO1"
+    ViewLink="mnj.ont.model.views.DetailToDetailVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="BundleVO"
+    ViewLink="mnj.ont.model.views.MnjFmgRngbdlCprfidFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="BundleVO1"
+    ViewLink="mnj.ont.model.views.DetailToBandleVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

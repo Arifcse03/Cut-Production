@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.62.29" id="CreatePGPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="HederVO1" RangeSize="25"
+              DataControl="CuttingProductionAMDataControl"
+              id="HederVO1Iterator"/>
+    <iterator Binds="DetaiView1" RangeSize="25"
+              DataControl="CuttingProductionAMDataControl"
+              id="DetaiView1Iterator"/>
+    <iterator Binds="LineVO1" RangeSize="25"
+              DataControl="CuttingProductionAMDataControl"
+              id="LineVO1Iterator"/>
+    <searchRegion Binds="LineVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="LineVO1Query"/>
+    <iterator Binds="DetailVO1" RangeSize="25"
+              DataControl="CuttingProductionAMDataControl"
+              id="DetailVO1Iterator"/>
+    <searchRegion Binds="DetailVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="DetailVO1Query"/>
+    <iterator Binds="BundleVO1" RangeSize="25"
+              DataControl="CuttingProductionAMDataControl"
+              id="BundleVO1Iterator"/>
+    <searchRegion Binds="BundleVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="BundleVO1Query"/>
+    <searchRegion Binds="DetaiView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="DetaiView1Query"/>
+    <iterator Binds="popupVO1" RangeSize="25"
+              DataControl="CuttingProductionAMDataControl"
+              id="popupVO1Iterator"/>
+    <searchRegion Binds="popupVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="popupVO1Query"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="HederVO1Iterator" id="RangeDate">
+      <AttrNames>
+        <Item Value="RangeDate"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="CuttingProductionAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="CuttingProductionAMDataControl"/>
+    <attributeValues IterBinding="HederVO1Iterator" id="RangeNumber">
+      <AttrNames>
+        <Item Value="RangeNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="ComponentIdDi">
+      <AttrNames>
+        <Item Value="ComponentIdDi"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="LineVO1Iterator" id="LineVO1">
+      <nodeDefinition DefName="mnj.ont.model.views.LineVO" Name="LineVO10">
+        <AttrNames>
+          <Item Value="RlineId"/>
+          <Item Value="LotId"/>
+          <Item Value="Shade"/>
+          <Item Value="TotalPly"/>
+          <Item Value="Fabcons"/>
+          <Item Value="Plyform"/>
+          <Item Value="LocatorName"/>
+          <Item Value="Locater"/>
+          <Item Value="LocatorId"/>
+          <Item Value="OnhandQuantity"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="LineVO1Iterator" id="CreateInsert1"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="LineVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="HederVO1Iterator" id="RangePosted">
+      <AttrNames>
+        <Item Value="RangePosted"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="SpreaderId">
+      <AttrNames>
+        <Item Value="SpreaderId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="SprContractorId">
+      <AttrNames>
+        <Item Value="SprContractorId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="SprConTypeId">
+      <AttrNames>
+        <Item Value="SprConTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="ContractorName">
+      <AttrNames>
+        <Item Value="ContractorName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="DetailVO1Iterator" id="DetailVO1">
+      <nodeDefinition DefName="mnj.ont.model.views.DetailVO" Name="DetailVO10">
+        <AttrNames>
+          <Item Value="CutQuantity"/>
+          <Item Value="CutrejQuantity"/>
+          <Item Value="Tranid"/>     
+          <Item Value="DivisionId"/>
+          <Item Value="SizeId"/>
+          <Item Value="SizeValue"/>
+          <Item Value="OrderQty"/>
+          <Item Value="PreQty"/>
+          <Item Value="BalanceQty"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="DetailVO1Iterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="BundleVO1Iterator" id="BundleVO1">
+      <nodeDefinition DefName="mnj.ont.model.views.BundleVO" Name="BundleVO10">
+        <AttrNames>
+          <Item Value="RangeoblineId"/>
+          <Item Value="Shade"/>
+          <Item Value="BandelId"/>
+          <Item Value="Plyfrom"/>
+          <Item Value="Plyto"/>
+          <Item Value="Cuttingqty"/>
+          <Item Value="FabCons"/>
+          <Item Value="RangebndlineId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="BundleVO1Iterator" id="CreateInsert3"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="BundleVO1Iterator" id="Delete2"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="DetaiView1Iterator" id="DetaiView1">
+      <nodeDefinition DefName="mnj.ont.model.views.DetaiView"
+                      Name="DetaiView10">
+        <AttrNames>
+          <Item Value="ItemCode"/>
+          <Item Value="CutjobId"/>
+          <Item Value="InseamId"/>
+          <Item Value="Cuttingqty"/>
+          <Item Value="Rajqty"/>
+          <Item Value="FabCons"/>
+          <Item Value="ObPosted"/>
+          <Item Value="Obrefno"/>
+          <Item Value="Tranid"/>
+          <Item Value="Prvcutqty"/>
+          <Item Value="Balanceqty"/>
+          <Item Value="CutjobIdDi"/>
+          <Item Value="JobQty"/>
+          <Item Value="AvailableQty"/>
+          <Item Value="Stylerefno"/>
+          <Item Value="BlancQty"/>
+          <Item Value="SolineId"/>
+          <Item Value="InseamValue"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="Orderqty"/>
+          <Item Value="QtyWithExtra"/>
+          <Item Value="PreviousProduction"/>
+          <Item Value="BalanceProduction"/>
+          <Item Value="Production"/>
+          <Item Value="LastAction"/>
+          <Item Value="ErrorMessage"/>
+          <Item Value="BpoId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="DetaiView1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="DetaiView1Iterator" id="Delete3"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="HederVO1Iterator" id="RatioplanId">
+      <AttrNames>
+        <Item Value="RatioplanId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="ComponentId">
+      <AttrNames>
+        <Item Value="ComponentId"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="IssueToFloor"
+                  InstanceName="CuttingProductionAMDataControl.dataProvider"
+                  DataControl="CuttingProductionAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="IssueToFloor" IsViewObjectMethod="false"
+                  ReturnName="data.CuttingProductionAMDataControl.methodResults.IssueToFloor_CuttingProductionAMDataControl_dataProvider_IssueToFloor_result">
+      <NamedData NDName="rangeId" NDType="int"/>
+    </methodAction>
+    <attributeValues IterBinding="HederVO1Iterator" id="RangeId">
+      <AttrNames>
+        <Item Value="RangeId"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="callPost"
+                  InstanceName="CuttingProductionAMDataControl.dataProvider"
+                  DataControl="CuttingProductionAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="callPost" IsViewObjectMethod="false"
+                  ReturnName="data.CuttingProductionAMDataControl.methodResults.callPost_CuttingProductionAMDataControl_dataProvider_callPost_result">
+      <NamedData NDName="rangeId" NDType="int"/>
+    </methodAction>
+    <methodAction id="submitCompletion"
+                  InstanceName="CuttingProductionAMDataControl.dataProvider"
+                  DataControl="CuttingProductionAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="submitCompletion" IsViewObjectMethod="false"
+                  ReturnName="data.CuttingProductionAMDataControl.methodResults.submitCompletion_CuttingProductionAMDataControl_dataProvider_submitCompletion_result">
+      <NamedData NDName="rangeId" NDType="int"/>
+    </methodAction>
+    <attributeValues IterBinding="HederVO1Iterator" id="SolineId">
+      <AttrNames>
+        <Item Value="SolineId"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="DetailVO1Iterator" id="CreateInsert2"
+            InstanceName="CuttingProductionAMDataControl.DetailVO1"
+            DataControl="CuttingProductionAMDataControl"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <listOfValues StaticList="false" IterBinding="HederVO1Iterator"
+                  Uses="LOV_BpoNo" id="BpoNo"/>
+    <listOfValues StaticList="false" IterBinding="HederVO1Iterator"
+                  Uses="LOV_Stn" id="Stn"/>
+    <attributeValues IterBinding="HederVO1Iterator" id="BuyerId">
+      <AttrNames>
+        <Item Value="BuyerId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="SalesorderId">
+      <AttrNames>
+        <Item Value="SalesorderId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="OrderQty">
+      <AttrNames>
+        <Item Value="OrderQty"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="HederVO1Iterator"
+                  Uses="LOV_Attribute14" id="Attribute14"/>
+    <tree IterBinding="popupVO1Iterator" id="popupVO1">
+      <nodeDefinition DefName="mnj.ont.model.lov.views.popupVO"
+                      Name="popupVO10">
+        <AttrNames>
+          <Item Value="StyleName"/>
+          <Item Value="BpoNo"/>
+          <Item Value="Stn"/>
+          <Item Value="OrderNumber"/>
+          <Item Value="ItemDescription"/>
+          <Item Value="OrderedItem"/>
+          <Item Value="OrderedQty"/>
+          <Item Value="ExtraCutPercent"/>
+          <Item Value="ExtraPer"/>
+          <Item Value="MultiSelect"/>
+          <Item Value="StnSequence"/>
+          <Item Value="BelanceProduction"/>
+          <Item Value="PreviousProduction"/>
+          <Item Value="PocId"/>
+          <Item Value="BpoId"/>
+          <Item Value="Bpo"/>
+          <Item Value="Style"/>
+          <Item Value="CutPlanNo"/>
+          <Item Value="WipEntityId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="findSelLines1"
+                  InstanceName="CuttingProductionAMDataControl.dataProvider"
+                  DataControl="CuttingProductionAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="findSelLines1" IsViewObjectMethod="false"/>
+    <methodAction id="populateOrderLines1"
+                  InstanceName="CuttingProductionAMDataControl.dataProvider"
+                  DataControl="CuttingProductionAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="populateOrderLines1" IsViewObjectMethod="false">
+      <NamedData NDName="style" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="TotalCutPlanQuantity"
+                  InstanceName="CuttingProductionAMDataControl.dataProvider"
+                  DataControl="CuttingProductionAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="TotalCutPlanQuantity" IsViewObjectMethod="false"/>
+    <methodAction id="CuttingProductionAssignment"
+                  InstanceName="CuttingProductionAMDataControl.dataProvider"
+                  DataControl="CuttingProductionAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CuttingProductionAssignment"
+                  IsViewObjectMethod="false"/>
+    <listOfValues StaticList="false" IterBinding="HederVO1Iterator"
+                  Uses="LOV_Attribute15" id="Attribute15"/>
+    <listOfValues StaticList="false" IterBinding="HederVO1Iterator"
+                  Uses="LOV_PocId" id="PocId"/>
+    <attributeValues IterBinding="HederVO1Iterator" id="CustomerName">
+      <AttrNames>
+        <Item Value="CustomerName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="StyleNew">
+      <AttrNames>
+        <Item Value="StyleNew"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HederVO1Iterator" id="SeasonNew">
+      <AttrNames>
+        <Item Value="SeasonNew"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

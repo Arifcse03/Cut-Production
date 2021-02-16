@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="BundleEO"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="MNJ_MFG_RANGE_BANDELLINE"
+  AliasName="BundleEO"
+  BindingStyle="OracleName"
+  UseGlueCode="false"
+  RowClass="mnj.ont.model.entities.BundleEOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Init|Delete|Access|DML"/>
+    <AttrArray Name="_publishEvents"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="DivisionId"
+    Precision="6"
+    ColumnName="DIVISION_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="RangeId"
+    IsNotNull="true"
+    Precision="15"
+    Scale="0"
+    ColumnName="RANGE_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MNJ_MFG_RANGE_BANDELLINE"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="RangebndlineId"
+    IsNotNull="true"
+    Precision="15"
+    Scale="0"
+    ColumnName="RANGEBNDLINE_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MNJ_MFG_RANGE_BANDELLINE"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="RangeoblineId"
+    IsNotNull="true"
+    Precision="15"
+    Scale="0"
+    ColumnName="RANGEOBLINE_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MNJ_MFG_RANGE_BANDELLINE"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SalesorderId"
+    Precision="8"
+    ColumnName="SALESORDER_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Shade"
+    Precision="15"
+    ColumnName="SHADE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="15"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="BandelId"
+    Precision="15"
+    ColumnName="BANDEL_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="15"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Plyfrom"
+    Precision="8"
+    Scale="0"
+    ColumnName="PLYFROM"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Plyto"
+    Precision="8"
+    Scale="0"
+    ColumnName="PLYTO"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Cuttingqty"
+    Precision="15"
+    Scale="0"
+    ColumnName="CUTTINGQTY"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="FabCons"
+    Precision="15"
+    Scale="2"
+    ColumnName="FAB_CONS"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="17"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LastUpdateDate"
+    ColumnName="LAST_UPDATE_DATE"
+    SQLType="TIMESTAMP"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LastUpdatedBy"
+    Precision="15"
+    Scale="0"
+    ColumnName="LAST_UPDATED_BY"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreationDate"
+    ColumnName="CREATION_DATE"
+    SQLType="TIMESTAMP"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedBy"
+    Precision="15"
+    Scale="0"
+    ColumnName="CREATED_BY"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MNJ_MFG_RANGE_BANDELLINE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="DetailEO"
+    Association="mnj.ont.model.entities.MnjFmgRngbdlCprfidFkAssoc"
+    AssociationEnd="mnj.ont.model.entities.MnjFmgRngbdlCprfidFkAssoc.DetailEO"
+    AssociationOtherEnd="mnj.ont.model.entities.MnjFmgRngbdlCprfidFkAssoc.BundleEO"
+    Type="mnj.ont.model.entities.DetailEOImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="MnjMfgRngbdlPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="MNJ_MFG_RNGBDL_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="mnj.ont.model.entities.BundleEO.RangeId"/>
+      <Item Value="mnj.ont.model.entities.BundleEO.RangebndlineId"/>
+      <Item Value="mnj.ont.model.entities.BundleEO.RangeoblineId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC00223715">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C00223715"/>
+      <Attr Name="_checkCondition" Value='"RANGE_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="mnj.ont.model.entities.BundleEO.RangeId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC00223716">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C00223716"/>
+      <Attr Name="_checkCondition" Value='"RANGEBNDLINE_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="mnj.ont.model.entities.BundleEO.RangebndlineId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC00223717">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C00223717"/>
+      <Attr Name="_checkCondition" Value='"RANGEOBLINE_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="mnj.ont.model.entities.BundleEO.RangeoblineId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="MnjFmgRngbdlCprfidFk">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="MNJ_MFG_RNGCOBD_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="MNJ_FMG_RNGBDL_CPRFID_FK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="mnj.ont.model.entities.BundleEO.RangeId"/>
+      <Item Value="mnj.ont.model.entities.BundleEO.RangeoblineId"/>
+    </AttrArray>
+  </Key>
+</Entity>

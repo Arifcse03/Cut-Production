@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="locaterLOV"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="mnj.ont.model.lov.views.locaterLOVRowImpl"
+  ComponentClass="mnj.ont.model.lov.views.locaterLOVImpl"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="mnj.ont.model.lov.views.locaterLOV_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="p_component_item_id"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[adf.context.sessionScope.inventoryIdS]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="p_lotNo"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="p_locator"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="p_org_id"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[adf.context.sessionScope.orgId]]></TransientExpression>
+  </Variable>
+  <SQLQuery>
+    <![CDATA[SELECT pha.segment1 po_number,
+                    moqd.subinventory_code PO_subinventory_code,
+          mil.segment1
+         || '-'
+         || mil.segment2
+         || '-'
+         || mil.segment3
+         || '-'
+         || mil.segment4
+         || '-'
+         || mil.segment5
+         || '-'
+         || mil.segment6
+         || '-'
+         || mil.segment7
+         || '-'
+         || mil.segment8 PO_locator_segment,
+         lot_number PO_lot_number,
+         SUM (NVL (transaction_quantity, 0)) On_hand_Qty,
+         lot_number,
+         msi.primary_uom_code,
+         moqd.LOCATOR_ID
+    FROM po_headers_all pha,
+         po_lines_all pla,
+         po_line_locations_all a,
+         mtl_onhand_quantities_detail moqd,
+         mtl_item_locations mil,
+         mtl_system_items msi
+   WHERE pha.po_header_id = pla.po_header_id
+     AND a.po_header_id = pla.po_header_id
+     AND a.po_line_id = pla.po_line_id
+     AND pla.item_id = moqd.inventory_item_id
+     and msi.INVENTORY_ITEM_ID=moqd.inventory_item_id
+     and msi.ORGANIZATION_ID=moqd.organization_id
+     AND moqd.organization_id = mil.organization_id
+     AND moqd.locator_id = mil.inventory_location_id(+)
+     AND type_lookup_code = 'STANDARD'
+     AND moqd.organization_id = a.SHIP_TO_ORGANIZATION_ID
+     AND pha.ORG_ID = :p_org_id
+     AND moqd.inventory_item_id in ( SELECT sobr.INVENTORY_ITEM_ID
+        FROM cust_mnj_ont_bom_rmline sobr, cust_mnj_ont_bom_obline sobb
+       WHERE sobr.bom_rmline_id = sobb.bom_rmline_id(+)   
+         AND sobb.INVENTORY_ITEM_ID = :p_component_item_id)          
+GROUP BY  msi.segment1, moqd.organization_id,moqd.subinventory_code,
+                        mil.segment1,
+            mil.segment1
+         || '-'
+         || mil.segment2
+         || '-'
+         || mil.segment3
+         || '-'
+         || mil.segment4
+         || '-'
+         || mil.segment5
+         || '-'
+         || mil.segment6
+         || '-'
+         || mil.segment7
+         || '-'
+         || mil.segment8,
+         moqd.locator_id,
+         lot_number,
+         msi.primary_unit_of_measure,
+         msi.primary_uom_code,
+         moqd.LOCATOR_ID,pha.segment1]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="PoNumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PO_NUMBER"
+    Expression="PO_NUMBER"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PoSubinventoryCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PO_SUBINVENTORY_CODE"
+    Expression="PO_SUBINVENTORY_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <LABEL
+          ResId="mnj.ont.model.lov.views.locaterLOV.PoSubinventoryCode_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PoLocatorSegment"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="245"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PO_LOCATOR_SEGMENT"
+    Expression="PO_LOCATOR_SEGMENT"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="245"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <LABEL
+          ResId="mnj.ont.model.lov.views.locaterLOV.PoLocatorSegment_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PoLotNumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PO_LOT_NUMBER"
+    Expression="PO_LOT_NUMBER"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <LABEL
+          ResId="mnj.ont.model.lov.views.locaterLOV.PoLotNumber_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OnHandQty"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="ON_HAND_QTY"
+    Expression="ON_HAND_QTY"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <LABEL
+          ResId="mnj.ont.model.lov.views.locaterLOV.OnHandQty_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LotNumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LOT_NUMBER"
+    Expression="LOT_NUMBER"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PrimaryUomCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PRIMARY_UOM_CODE"
+    Expression="PRIMARY_UOM_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <LABEL
+          ResId="mnj.ont.model.lov.views.locaterLOV.PrimaryUomCode_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LocatorId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="LOCATOR_ID"
+    Expression="LOCATOR_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="locaterLOVCriteria"
+    ViewObjectName="mnj.ont.model.lov.views.locaterLOV"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow34"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="PoLocatorSegment"
+        ViewAttribute="PoLocatorSegment"
+        Operator="="
+        Conjunction="AND"
+        Value=":p_locator"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="PoLotNumber"
+        ViewAttribute="PoLotNumber"
+        Operator="="
+        Conjunction="AND"
+        Value=":p_lotNo"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

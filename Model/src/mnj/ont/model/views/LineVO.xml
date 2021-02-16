@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LineVO"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="locaterLOV1"
+    ViewObjectName="mnj.ont.model.lov.views.locaterLOV"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_LotId"
+    ListVOName="locaterLOV1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_LotId_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="LotId"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="LocatorId"/>
+      <Item Value="Locater"/>
+      <Item Value="LocatorName"/>
+      <Item Value="OnhandQuantity"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LotNumber"/>
+      <Item Value="LocatorId"/>
+      <Item Value="PoLocatorSegment"/>
+      <Item Value="PoLocatorSegment"/>
+      <Item Value="OnHandQty"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PoLotNumber"/>
+      <Item Value="LotNumber"/>
+      <Item Value="PoLocatorSegment"/>
+      <Item Value="PoSubinventoryCode"/>
+      <Item Value="PrimaryUomCode"/>
+      <Item Value="OnHandQty"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="locaterLOVCriteria"/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT LineEO.DIVISION_ID, 
+       LineEO.RANGE_ID, 
+       LineEO.RLINE_ID, 
+       LineEO.FABJOB_ID, 
+       LineEO.LOT_ID, 
+       LineEO.SHADE, 
+       LineEO.TOTAL_PLY, 
+       LineEO.FABCONS, 
+       LineEO.PLYFORM, 
+       LineEO.PLYTO, 
+       LineEO.TOTAL_PCS, 
+       LineEO.PO_NO, 
+       LineEO.FABRIC_TYPE, 
+       LineEO.LAST_UPDATE_DATE, 
+       LineEO.LAST_UPDATED_BY, 
+       LineEO.CREATION_DATE, 
+       LineEO.CREATED_BY, 
+       LineEO.RANGEOBLINE_ID, 
+       LineEO.ISSUE_STATUS, 
+       LineEO.LOCATOR_ID, 
+       LineEO.LAST_UPDATE_LOGIN, 
+       LineEO.ATTRIBUTE1, 
+       LineEO.ATTRIBUTE2, 
+       LineEO.ATTRIBUTE3, 
+       LineEO.ATTRIBUTE4, 
+       LineEO.ATTRIBUTE5, 
+       LineEO.ATTRIBUTE6, 
+       LineEO.ATTRIBUTE7, 
+       LineEO.ATTRIBUTE8, 
+       LineEO.ATTRIBUTE9, 
+       LineEO.ATTRIBUTE10, 
+       LineEO.ATTRIBUTE11, 
+       LineEO.ATTRIBUTE12, 
+       LineEO.ATTRIBUTE13, 
+       LineEO.ATTRIBUTE14, 
+       LineEO.ATTRIBUTE15,
+       LineEO.onhand_quantity,
+       '' LOCATER,
+       (SELECT    mil.segment1
+               || '-'
+               || mil.segment2
+               || '-'
+               || mil.segment3
+               || '-'
+               || mil.segment4
+               || '-'
+               || mil.segment5
+               || '-'
+               || mil.segment6
+               || '-'
+               || mil.segment7
+               || '-'
+               || mil.segment8
+          FROM mtl_item_locations mil
+         WHERE mil.inventory_location_id = lineeo.locator_id) LOCATOR_NAME
+FROM MNJ_MFG_RANGE_RLINE LineEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="LineEO"
+    Entity="mnj.ont.model.entities.LineEO"/>
+  <ViewAttribute
+    Name="DivisionId"
+    PrecisionRule="true"
+    EntityAttrName="DivisionId"
+    EntityUsage="LineEO"
+    AliasName="DIVISION_ID"/>
+  <ViewAttribute
+    Name="RangeId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RangeId"
+    EntityUsage="LineEO"
+    AliasName="RANGE_ID"/>
+  <ViewAttribute
+    Name="RlineId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RlineId"
+    EntityUsage="LineEO"
+    AliasName="RLINE_ID"/>
+  <ViewAttribute
+    Name="FabjobId"
+    PrecisionRule="true"
+    EntityAttrName="FabjobId"
+    EntityUsage="LineEO"
+    AliasName="FABJOB_ID"/>
+  <ViewAttribute
+    Name="LotId"
+    PrecisionRule="true"
+    EntityAttrName="LotId"
+    EntityUsage="LineEO"
+    AliasName="LOT_ID"
+    LOVName="LOV_LotId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Shade"
+    PrecisionRule="true"
+    EntityAttrName="Shade"
+    EntityUsage="LineEO"
+    AliasName="SHADE"/>
+  <ViewAttribute
+    Name="TotalPly"
+    PrecisionRule="true"
+    EntityAttrName="TotalPly"
+    EntityUsage="LineEO"
+    AliasName="TOTAL_PLY"/>
+  <ViewAttribute
+    Name="Fabcons"
+    PrecisionRule="true"
+    EntityAttrName="Fabcons"
+    EntityUsage="LineEO"
+    AliasName="FABCONS"/>
+  <ViewAttribute
+    Name="Plyform"
+    PrecisionRule="true"
+    EntityAttrName="Plyform"
+    EntityUsage="LineEO"
+    AliasName="PLYFORM"/>
+  <ViewAttribute
+    Name="Plyto"
+    PrecisionRule="true"
+    EntityAttrName="Plyto"
+    EntityUsage="LineEO"
+    AliasName="PLYTO"/>
+  <ViewAttribute
+    Name="TotalPcs"
+    PrecisionRule="true"
+    EntityAttrName="TotalPcs"
+    EntityUsage="LineEO"
+    AliasName="TOTAL_PCS"/>
+  <ViewAttribute
+    Name="PoNo"
+    PrecisionRule="true"
+    EntityAttrName="PoNo"
+    EntityUsage="LineEO"
+    AliasName="PO_NO"/>
+  <ViewAttribute
+    Name="FabricType"
+    PrecisionRule="true"
+    EntityAttrName="FabricType"
+    EntityUsage="LineEO"
+    AliasName="FABRIC_TYPE"/>
+  <ViewAttribute
+    Name="LastUpdateDate"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdateDate"
+    EntityUsage="LineEO"
+    AliasName="LAST_UPDATE_DATE"/>
+  <ViewAttribute
+    Name="LastUpdatedBy"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdatedBy"
+    EntityUsage="LineEO"
+    AliasName="LAST_UPDATED_BY"/>
+  <ViewAttribute
+    Name="CreationDate"
+    PrecisionRule="true"
+    EntityAttrName="CreationDate"
+    EntityUsage="LineEO"
+    AliasName="CREATION_DATE"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="LineEO"
+    AliasName="CREATED_BY"/>
+  <ViewAttribute
+    Name="RangeoblineId"
+    PrecisionRule="true"
+    EntityAttrName="RangeoblineId"
+    EntityUsage="LineEO"
+    AliasName="RANGEOBLINE_ID"/>
+  <ViewAttribute
+    Name="IssueStatus"
+    PrecisionRule="true"
+    EntityAttrName="IssueStatus"
+    EntityUsage="LineEO"
+    AliasName="ISSUE_STATUS"/>
+  <ViewAttribute
+    Name="LocatorId"
+    PrecisionRule="true"
+    EntityAttrName="LocatorId"
+    EntityUsage="LineEO"
+    AliasName="LOCATOR_ID"/>
+  <ViewAttribute
+    Name="LastUpdateLogin"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdateLogin"
+    EntityUsage="LineEO"
+    AliasName="LAST_UPDATE_LOGIN"/>
+  <ViewAttribute
+    Name="Attribute1"
+    PrecisionRule="true"
+    EntityAttrName="Attribute1"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE1"/>
+  <ViewAttribute
+    Name="Attribute2"
+    PrecisionRule="true"
+    EntityAttrName="Attribute2"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE2"/>
+  <ViewAttribute
+    Name="Attribute3"
+    PrecisionRule="true"
+    EntityAttrName="Attribute3"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE3"/>
+  <ViewAttribute
+    Name="Attribute4"
+    PrecisionRule="true"
+    EntityAttrName="Attribute4"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE4"/>
+  <ViewAttribute
+    Name="Attribute5"
+    PrecisionRule="true"
+    EntityAttrName="Attribute5"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE5"/>
+  <ViewAttribute
+    Name="Attribute6"
+    PrecisionRule="true"
+    EntityAttrName="Attribute6"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE6"/>
+  <ViewAttribute
+    Name="Attribute7"
+    PrecisionRule="true"
+    EntityAttrName="Attribute7"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE7"/>
+  <ViewAttribute
+    Name="Attribute8"
+    PrecisionRule="true"
+    EntityAttrName="Attribute8"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE8"/>
+  <ViewAttribute
+    Name="Attribute9"
+    PrecisionRule="true"
+    EntityAttrName="Attribute9"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE9"/>
+  <ViewAttribute
+    Name="Attribute10"
+    PrecisionRule="true"
+    EntityAttrName="Attribute10"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE10"/>
+  <ViewAttribute
+    Name="Attribute11"
+    PrecisionRule="true"
+    EntityAttrName="Attribute11"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE11"/>
+  <ViewAttribute
+    Name="Attribute12"
+    PrecisionRule="true"
+    EntityAttrName="Attribute12"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE12"/>
+  <ViewAttribute
+    Name="Attribute13"
+    PrecisionRule="true"
+    EntityAttrName="Attribute13"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE13"/>
+  <ViewAttribute
+    Name="Attribute14"
+    PrecisionRule="true"
+    EntityAttrName="Attribute14"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE14"/>
+  <ViewAttribute
+    Name="Attribute15"
+    PrecisionRule="true"
+    EntityAttrName="Attribute15"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE15"/>
+  <ViewAttribute
+    Name="OnhandQuantity"
+    PrecisionRule="true"
+    AliasName="ONHAND_QUANTITY"
+    EntityAttrName="OnhandQuantity"
+    EntityUsage="LineEO"/>
+  <ViewAttribute
+    Name="Locater"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1000"
+    Type="java.lang.String"
+    ColumnType="varchar2"
+    AliasName="LOCATER"
+    Expression="LOCATER"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="LocatorName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2000"
+    Type="java.lang.String"
+    ColumnType="varchar2"
+    AliasName="LOCATOR_NAME"
+    Expression="LOCATOR_NAME"
+    SQLType="VARCHAR"/>
+</ViewObject>

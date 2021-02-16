@@ -1,0 +1,9 @@
+The following Synchronization Actions were performed successfully:
+
+Entity :HederEO
+  Create Attribute for column: BUYER_ID
+  Create Attribute for column: STYLE
+  Create Attribute for column: ORDER_QTY
+  Create Attribute for column: STN
+  Create Attribute for column: BPO_NO
+  Create Key for Constraint: SYS_C00408620

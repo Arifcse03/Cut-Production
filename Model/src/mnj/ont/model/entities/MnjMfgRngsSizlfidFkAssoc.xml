@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MnjMfgRngsSizlfidFkAssoc"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="DetailEO"
+    Cardinality="1"
+    Source="true"
+    Owner="mnj.ont.model.entities.DetailEO">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="DetailEO"/>
+      <Attr Name="_foreignKey"
+        Value="mnj.ont.model.entities.DetailEO.MnjMfgRngcobdPk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="mnj.ont.model.entities.DetailEO.RangeId"/>
+      <Item Value="mnj.ont.model.entities.DetailEO.RangeoblineId"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="DetailEOtodetailEo"
+    Cardinality="-1"
+    Owner="mnj.ont.model.entities.DetailEOtodetailEo">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="DetailEOtodetailEo"/>
+      <Attr Name="_foreignKey"
+        Value="mnj.ont.model.entities.DetailEOtodetailEo.MnjMfgRngsSizlfidFk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="mnj.ont.model.entities.DetailEOtodetailEo.RangeId"/>
+      <Item Value="mnj.ont.model.entities.DetailEOtodetailEo.RangeoblineId"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>

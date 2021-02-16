@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MnjFmgRngbdlCprfidFkLink"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  EntityAssociation="mnj.ont.model.entities.MnjFmgRngbdlCprfidFkAssoc">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewLinkDefEnd
+    Name="DetaiView"
+    Cardinality="1"
+    Owner="mnj.ont.model.views.DetaiView"
+    Source="true">
+    <DesignTime>
+      <Attr Name="_finderName" Value="DetaiView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="mnj.ont.model.views.DetaiView.RangeId"/>
+      <Item Value="mnj.ont.model.views.DetaiView.RangeoblineId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="BundleVO"
+    Cardinality="-1"
+    Owner="mnj.ont.model.views.BundleVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="BundleVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="mnj.ont.model.views.BundleVO.RangeId"/>
+      <Item Value="mnj.ont.model.views.BundleVO.RangeoblineId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>
