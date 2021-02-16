@@ -296,7 +296,7 @@
                     </af:inputText>
                   </af:column>
                   <af:column sortProperty="Obrefno" sortable="true"
-                             headerText="STN" id="c12" align="center">
+                             headerText="BPO" id="c12" align="center">
                     <af:inputListOfValues id="obrefnoId"
                                           popupTitle="Search and Select: #{bindings.DetaiView1.hints.Obrefno.label}"
                                           value="#{row.bindings.Obrefno.inputValue}"
@@ -320,7 +320,7 @@
                       <f:validator binding="#{row.bindings.ItemDescription.validator}"/>
                     </af:inputText>
                   </af:column>
-                  <af:column headerText="Order Qty"
+                  <af:column headerText="QTY"
                              id="c3" align="center">
                     <af:inputText value="#{row.bindings.Orderqty.inputValue}"
                                   label="#{bindings.DetaiView1.hints.Orderqty.label}"
