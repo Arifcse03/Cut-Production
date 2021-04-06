@@ -72,7 +72,8 @@
                                       required="#{bindings.PocId.hints.mandatory}"
                                       columns="#{bindings.PocId.hints.displayWidth}"
                                       shortDesc="#{bindings.PocId.hints.tooltip}"
-                                      autoSubmit="true">
+                                      autoSubmit="true"
+                                      readOnly="#{bindings.PocId.inputValue eq null ? 'false':'true'}">
                   <f:validator binding="#{bindings.PocId.validator}"/>
                   <af:convertNumber groupingUsed="false"
                                     pattern="#{bindings.PocId.format}"/>
@@ -294,6 +295,13 @@
                       <af:convertNumber groupingUsed="false"
                                         pattern="#{bindings.DetaiView1.hints.BpoId.format}"/>
                     </af:inputText>
+                  </af:column>
+                  <af:column headerText="#{bindings.DetaiView1.hints.BpoId.label}"
+                             id="c39">
+                    <af:outputText value="#{row.BpoId}" id="ot17">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.DetaiView1.hints.BpoId.format}"/>
+                    </af:outputText>
                   </af:column>
                   <af:column sortProperty="Obrefno" sortable="true"
                              headerText="BPO" id="c12" align="center">

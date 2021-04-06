@@ -30,7 +30,7 @@
     Kind="where"
     Type="java.lang.String"/>
   <SQLQuery>
-    <![CDATA[select h.ratioplan_number, 
+    <![CDATA[select distinct h.ratioplan_number, 
    
        H.RATIO_PLAN_QTY
     
