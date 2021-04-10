@@ -58,7 +58,7 @@ AND H.LC_UNIT = :p_org]]>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYWIDTH
-          Value="25"/>
+          Value="10"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
@@ -78,7 +78,7 @@ AND H.LC_UNIT = :p_org]]>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
-          Value="Hide"/>
+          Value="Display"/>
         <DISPLAYWIDTH
           Value="10"/>
       </SchemaBasedProperties>
@@ -207,7 +207,7 @@ AND H.LC_UNIT = :p_org]]>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
-          Value="Hide"/>
+          Value="Display"/>
         <DISPLAYWIDTH
           Value="10"/>
       </SchemaBasedProperties>
@@ -230,9 +230,9 @@ AND H.LC_UNIT = :p_org]]>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
-          Value="Hide"/>
+          Value="Display"/>
         <DISPLAYWIDTH
-          Value="10"/>
+          Value="60"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>

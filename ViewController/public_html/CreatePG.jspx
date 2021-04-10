@@ -263,7 +263,7 @@
                                       text="Create" id="cb3"/>
                     <af:commandButton actionListener="#{bindings.Delete3.execute}"
                                       text="Delete" id="cb10"/>
-                    <af:commandButton text="Fill STN" id="cb14">
+                    <af:commandButton text="Fill BPO" id="cb14">
                       <af:showPopupBehavior popupId="::p1"/>
                     </af:commandButton>
                   </af:toolbar>
