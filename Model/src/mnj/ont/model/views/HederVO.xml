@@ -272,6 +272,8 @@
     <AttrArray Name="ListDisplayAttrNames">
       <Item Value="RatioplanNumber"/>
       <Item Value="RatioPlanQty"/>
+      <Item Value="Color"/>
+      <Item Value="WashName"/>
     </AttrArray>
     <DisplayCriteria
       Hint="showAndExecute"/>

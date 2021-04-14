@@ -32,7 +32,9 @@
   <SQLQuery>
     <![CDATA[select distinct h.ratioplan_number, 
    
-       H.RATIO_PLAN_QTY
+       H.RATIO_PLAN_QTY,
+ pocl.color,
+ pocl.wash_name
     
  from MNJ_MFG_RATIOPLAN h, xx_om_poc_h_t pocH,xx_om_poc_L_t pocL
 where pocH.poc_id=pocL.poc_id
@@ -77,7 +79,49 @@ and pocH.poc_id=:poc_id]]>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYWIDTH
+          Value="10"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Color"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COLOR"
+    Expression="COLOR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
           Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="WashName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="WASH_NAME"
+    Expression="WASH_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="70"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>

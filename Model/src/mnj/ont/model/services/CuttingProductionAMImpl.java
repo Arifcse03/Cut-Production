@@ -223,10 +223,19 @@ public class CuttingProductionAMImpl extends ApplicationModuleImpl implements Cu
         ViewObject populatevo = getpopupVO1();
     
         String aa = getstyle();
+        
+        populatevo.clearCache();
+                populatevo.setWhereClause(null);
+                populatevo.setWhereClauseParam(0, aa);
+                populatevo.executeQuery();
+                populatevo.first();
+        
+        
+        /*
         populatevo.setWhereClause("POC_ID = " + "'" + aa + "'");
         System.out.println("sale order id change test usman in AM-->" + aa);
         
-        populatevo.executeQuery();
+        populatevo.executeQuery();*/
         System.out.println(populatevo.getQuery());
     } //end of populateOrderLines method
 
@@ -312,7 +321,7 @@ public class CuttingProductionAMImpl extends ApplicationModuleImpl implements Cu
         String PocId = null;
         try {
 
-            PocId = vo.getCurrentRow().getAttribute("PocId").toString();
+            PocId = vo.getCurrentRow().getAttribute("Attribute15").toString();
             System.out.println("PocId is:"+PocId);
 
         } catch (Exception e) {

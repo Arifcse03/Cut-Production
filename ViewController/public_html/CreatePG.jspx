@@ -836,6 +836,14 @@
                          filterable="true" sortProperty="Bpo">
                 <af:outputText value="#{row.Bpo}" id="ot8"/>
               </af:column>
+              <af:column headerText="Sequence"
+                         id="c40" align="center" sortable="true"
+                         filterable="true" sortProperty="StnSequence">
+                <af:outputText value="#{row.StnSequence}" id="ot18">
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.popupVO1.hints.StnSequence.format}"/>
+                </af:outputText>
+              </af:column>
               <af:column headerText="Item Description"
                          id="c17" sortable="true" filterable="true"
                          align="center" sortProperty="ItemDescription">
